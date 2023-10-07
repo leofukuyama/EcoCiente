@@ -1,81 +1,98 @@
-let xmlDoc; // O documento XML
-let currentLevel = "level1"; // Começa no nível 1
-let currentPath = []; // Rastrea o caminho das escolhas do usuário
+let choiceHistory = [];
+let choiceIdHistory = [];
 
-// Carregar o XML ao carregar a página
-window.onload = function () {
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            xmlDoc = this.responseXML;
-            displayStory(xmlDoc);
-        }
-    };
-    xhttp.open("GET", "historia.xml", true);
-    xhttp.send();
-};
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('historia.xml')
+        .then(response => response.text())
+        .then(data => {
+            let parser = new DOMParser();
+            let xml = parser.parseFromString(data, "application/xml");
+            displayStory(xml);
+            displayChoices(xml.querySelector('level1')); // Começamos no Nível 1
+        })
+        .catch(err => {
+            console.error('Erro ao carregar a história:', err);
+        });
+});
 
-// Exibir a história
 function displayStory(xml) {
-    const storyContainer = document.getElementById('story-container');
-    const intro = xml.getElementsByTagName("introduction")[0].textContent;
-    const title = xml.getElementsByTagName("story")[0].getAttribute("title");
+    const title = xml.querySelector('story').getAttribute('title');
+    const introduction = xml.querySelector('introduction').textContent;
 
-    storyContainer.querySelector("h1").textContent = title;
-    document.getElementById("introduction").textContent = intro;
-
-    displayChoices(currentLevel, "");
+    document.querySelector('h1').textContent = title;
+    document.getElementById('introduction').textContent = introduction;
 }
 
-// Exibir as escolhas
-function displayChoices(level, path) {
-    let choicesContainer = document.getElementById('choices');
-    choicesContainer.innerHTML = ""; // Limpar escolhas anteriores
+function displayChoices(node) {
+    const choicesDiv = document.getElementById('choices');
+    choicesDiv.innerHTML = ''; // Limpa escolhas anteriores
 
-    let choices = xmlDoc.querySelectorAll(level + ">choice" + path);
-
-    if (choices.length === 0) {
-        // Se não houver mais escolhas, paramos aqui
-        return;
-    }
-
+    const choices = node.querySelectorAll(':scope > choice');
     choices.forEach(choice => {
-        let btn = document.createElement('button');
-        let img = document.createElement('img');
+        const btn = document.createElement('button');
         btn.textContent = choice.getAttribute('description');
-        img.src = choice.getAttribute('image');
-        btn.onclick = function () {
-            makeChoice(choice);
-        };
-        choicesContainer.appendChild(img);
-        choicesContainer.appendChild(btn);
+
+        // Adiciona a imagem à escolha
+        const imageSrc = choice.getAttribute('image');
+        if (imageSrc) {
+            const img = document.createElement('img');
+            img.src = imageSrc;
+            btn.appendChild(img);
+        }
+
+        btn.addEventListener('click', () => {
+            addChoiceToHistory(btn.textContent);
+            addChoiceIdToHistory(choice.getAttribute('id'));
+
+            const nextLevel = choice.querySelector(':scope > level2, :scope > level3, :scope > level4, :scope > level5, :scope > level6, :scope > level7');
+
+            if (nextLevel) {
+                choiceHistory.push(node);
+                displayChoices(nextLevel);
+            }
+        });
+        choicesDiv.appendChild(btn);
     });
+
 }
 
-// Fazer uma escolha
-function makeChoice(choice) {
-    let choiceDescription = choice.getAttribute('description');
-    let choiceId = choice.getAttribute('id');
-    currentPath.push(choiceId);
-    updateHistory(choiceDescription, choiceId);
-    displayChoices("level" + (currentPath.length + 1), generatePath());
+    // Se já fizemos alguma escolha, mostramos o botão para voltar
+    if (choiceHistory.length) {
+        const backButton = document.createElement('button');
+        backButton.textContent = "Voltar";
+        backButton.style.backgroundColor = "#dc3545";
+        backButton.addEventListener('click', () => {
+            removeLastChoiceFromHistory();
+            removeLastChoiceIdFromHistory(); // Remove o último ID do histórico
+            const previousChoice = choiceHistory.pop();
+            displayChoices(previousChoice);
+        });
+        choicesDiv.appendChild(backButton);
+    }
 }
 
-// Atualizar o histórico de escolhas
-function updateHistory(description, id) {
-    let ulHistory = document.getElementById('choice-history').querySelector('ul');
-    let ulIdHistory = document.getElementById('choice-id-history').querySelector('ul');
-
-    let liHistory = document.createElement('li');
-    liHistory.textContent = description;
-    ulHistory.appendChild(liHistory);
-
-    let liIdHistory = document.createElement('li');
-    liIdHistory.textContent = id;
-    ulIdHistory.appendChild(liIdHistory);
+function addChoiceToHistory(choice) {
+    const li = document.createElement('li');
+    li.textContent = choice;
+    document.querySelector('#choice-history ul').appendChild(li);
 }
 
-// Gerar o caminho XML com base no histórico de escolhas
-function generatePath() {
-    return currentPath.map((choiceId, idx) => `:nth-child(${parseInt(choiceId, 36) - 9})`).join(">level" + (idx + 2) + ">choice");
+function removeLastChoiceFromHistory() {
+    const ul = document.querySelector('#choice-history ul');
+    if (ul.lastChild) {
+        ul.removeChild(ul.lastChild);
+    }
+}
+
+function addChoiceIdToHistory(choiceId) {
+    const li = document.createElement('li');
+    li.textContent = choiceId;
+    document.querySelector('#choice-id-history ul').appendChild(li);
+}
+
+function removeLastChoiceIdFromHistory() {
+    const ul = document.querySelector('#choice-id-history ul');
+    if (ul.lastChild) {
+        ul.removeChild(ul.lastChild);
+    }
 }
