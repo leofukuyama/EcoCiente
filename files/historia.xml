@@ -6,74 +6,74 @@
     </introduction>
     
     <level1>
-        <choice id="A" description="">
+        <choice id="A" description="" image="">
             <level2>
-                <choice id="A1" description="">
+                <choice id="A1" description="" image="">
                     <level3>
-                        <choice id="A1a" description="">
+                        <choice id="A1a" description="" image="">
                             <level4>
-                                <choice id="A1a1" description="">
+                                <choice id="A1a1" description="" image="">
                                     <level5>
-                                        <choice id="A1a1a" description=""/>
-                                        <choice id="A1a1b" description=""/>
+                                        <choice id="A1a1a" description="" image=""/>
+                                        <choice id="A1a1b" description="" image=""/>
                                     </level5>
                                 </choice>
-                                <choice id="A1a2" description="">
+                                <choice id="A1a2" description="" image="">
                                     <level5>
-                                        <choice id="A1a2a" description=""/>
-                                        <choice id="A1a2b" description=""/>
+                                        <choice id="A1a2a" description="" image=""/>
+                                        <choice id="A1a2b" description="" image=""/>
                                     </level5>
                                 </choice>
                             </level4>
                         </choice>
-                        <choice id="A1b" description="">
+                        <choice id="A1b" description="" image="">
                             <level4>
-                                <choice id="A1b1" description="">
+                                <choice id="A1b1" description="" image="">
                                     <level5>
-                                        <choice id="A1b1a" description=""/>
-                                        <choice id="A1b1b" description=""/>
+                                        <choice id="A1b1a" description="" image=""/>
+                                        <choice id="A1b1b" description="" image=""/>
                                     </level5>
                                 </choice>
-                                <choice id="A1b2" description="">
+                                <choice id="A1b2" description="" image="">
                                     <level5>
-                                        <choice id="A1b2a" description=""/>
-                                        <choice id="A1b2b" description=""/>
+                                        <choice id="A1b2a" description="" image=""/>
+                                        <choice id="A1b2b" description="" image=""/>
                                     </level5>
                                 </choice>
                             </level4>
                         </choice>
                     </level3>
                 </choice>
-                <choice id="A2" description="">
+                <choice id="A2" description="" image="">
                     <level3>
-                        <choice id="A2a" description="">
+                        <choice id="A2a" description="" image="">
                             <level4>
-                                <choice id="A2a1" description="">
+                                <choice id="A2a1" description="" image="">
                                     <level5>
-                                        <choice id="A2a1a" description=""/>
-                                        <choice id="A2a1b" description=""/>
+                                        <choice id="A2a1a" description="" image=""/>
+                                        <choice id="A2a1b" description="" image=""/>
                                     </level5>
                                 </choice>
                                 <choice id="A2a2" description="">
                                     <level5>
-                                        <choice id="A2a2a" description=""/>
-                                        <choice id="A2a2b" description=""/>
+                                        <choice id="A2a2a" description="" />
+                                        <choice id="A2a2b" description="" image=""/>
                                     </level5>
                                 </choice>
                             </level4>
                         </choice>
-                        <choice id="A2b" description="">
+                        <choice id="A2b" description="" image="">
                             <level4>
-                                <choice id="A2b1" description="">
+                                <choice id="A2b1" description="" image="">
                                     <level5>
-                                        <choice id="A2b1a" description=""/>
-                                        <choice id="A2b1b" description=""/>
+                                        <choice id="A2b1a" description="" image=""/>
+                                        <choice id="A2b1b" description="" image=""/>
                                     </level5>
                                 </choice>
-                                <choice id="A2b2" description="">
+                                <choice id="A2b2" description="" image="">
                                     <level5>
-                                        <choice id="A2b2a" description=""/>
-                                        <choice id="A2b2b" description=""/>
+                                        <choice id="A2b2a" description="" image=""/>
+                                        <choice id="A2b2b" description="" image=""/>
                                     </level5>
                                 </choice>
                             </level4>
@@ -83,74 +83,74 @@
             </level2>
         </choice>
         
-        <choice id="B" description="">
+        <choice id="B" description="" image="">
             <level2>
-                <choice id="B1" description="">
+                <choice id="B1" description="" image="">
                     <level3>
-                        <choice id="B1a" description="">
+                        <choice id="B1a" description="" image="">
                             <level4>
-                                <choice id="B1a1" description="">
+                                <choice id="B1a1" description="" image="">
                                     <level5>
-                                        <choice id="B1a1a" description=""/>
-                                        <choice id="B1a1b" description=""/>
+                                        <choice id="B1a1a" description="" image=""/>
+                                        <choice id="B1a1b" description="" image=""/>
                                     </level5>
                                 </choice>
-                                <choice id="B1a2" description="">
+                                <choice id="B1a2" description="" image="">
                                     <level5>
-                                        <choice id="B1a2a" description=""/>
-                                        <choice id="B1a2b" description=""/>
+                                        <choice id="B1a2a" description="" image=""/>
+                                        <choice id="B1a2b" description="" image=""/>
                                     </level5>
                                 </choice>
                             </level4>
                         </choice>
-                        <choice id="B1b" description="">
+                        <choice id="B1b" description="" image="">
                             <level4>
-                                <choice id="B1b1" description="">
+                                <choice id="B1b1" description="" image="">
                                     <level5>
-                                        <choice id="B1b1a" description=""/>
-                                        <choice id="B1b1b" description=""/>
+                                        <choice id="B1b1a" description="" image=""/>
+                                        <choice id="B1b1b" description="" image=""/>
                                     </level5>
                                 </choice>
-                                <choice id="B1b2" description="">
+                                <choice id="B1b2" description="" image="">
                                     <level5>
-                                        <choice id="B1b2a" description=""/>
-                                        <choice id="B1b2b" description=""/>
+                                        <choice id="B1b2a" description="" image=""/>
+                                        <choice id="B1b2b" description="" image=""/>
                                     </level5>
                                 </choice>
                             </level4>
                         </choice>
                     </level3>
                 </choice>
-                <choice id="B2" description="">
+                <choice id="B2" description="" image="">
                     <level3>
-                        <choice id="B2a" description="">
+                        <choice id="B2a" description="" image="">
                             <level4>
-                                <choice id="B2a1" description="">
+                                <choice id="B2a1" description="" image="">
                                     <level5>
-                                        <choice id="B2a1a" description=""/>
-                                        <choice id="B2a1b" description=""/>
+                                        <choice id="B2a1a" description="" image=""/>
+                                        <choice id="B2a1b" description="" image=""/>
                                     </level5>
                                 </choice>
-                                <choice id="B2a2" description="">
+                                <choice id="B2a2" description="" image="">
                                     <level5>
-                                        <choice id="B2a2a" description=""/>
-                                        <choice id="B2a2b" description=""/>
+                                        <choice id="B2a2a" description="" image=""/>
+                                        <choice id="B2a2b" description="" image=""/>
                                     </level5>
                                 </choice>
                             </level4>
                         </choice>
-                        <choice id="B2b" description="">
+                        <choice id="B2b" description="" image="">
                             <level4>
-                                <choice id="B2b1" description="">
+                                <choice id="B2b1" description="" image="">
                                     <level5>
-                                        <choice id="B2b1a" description=""/>
-                                        <choice id="B2b1b" description=""/>
+                                        <choice id="B2b1a" description="" image=""/>
+                                        <choice id="B2b1b" description="" image=""/>
                                     </level5>
                                 </choice>
-                                <choice id="B2b2" description="">
+                                <choice id="B2b2" description="" image="">
                                     <level5>
-                                        <choice id="B2b2a" description=""/>
-                                        <choice id="B2b2b" description=""/>
+                                        <choice id="B2b2a" description="" image=""/>
+                                        <choice id="B2b2b" description="" image=""/>
                                     </level5>
                                 </choice>
                             </level4>
