@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let parser = new DOMParser();
             let xml = parser.parseFromString(data, "application/xml");
             displayStory(xml);
-            displayChoices(xml.querySelector('level1')); // Começamos no Nível 1
+            displayChoices(xml.querySelector('level1'));
         })
         .catch(err => {
             console.error('Erro ao carregar a história:', err);
@@ -25,19 +25,23 @@ function displayStory(xml) {
 
 function displayChoices(node) {
     const choicesDiv = document.getElementById('choices');
-    choicesDiv.innerHTML = ''; // Limpa escolhas anteriores
+    choicesDiv.innerHTML = '';
 
     const choices = node.querySelectorAll(':scope > choice');
     choices.forEach(choice => {
+        const choiceContainer = document.createElement('div');
+        choiceContainer.classList.add('choice-container');
+
         const btn = document.createElement('button');
         btn.textContent = choice.getAttribute('description');
+        btn.classList.add('choice-button');
 
-        // Adiciona a imagem à escolha
         const imageSrc = choice.getAttribute('image');
         if (imageSrc) {
             const img = document.createElement('img');
             img.src = imageSrc;
-            btn.appendChild(img);
+            img.classList.add('img');
+            choiceContainer.appendChild(img);
         }
 
         btn.addEventListener('click', () => {
@@ -51,19 +55,18 @@ function displayChoices(node) {
                 displayChoices(nextLevel);
             }
         });
-        choicesDiv.appendChild(btn);
+
+        choiceContainer.appendChild(btn);
+        choicesDiv.appendChild(choiceContainer);
     });
 
-}
-
-    // Se já fizemos alguma escolha, mostramos o botão para voltar
     if (choiceHistory.length) {
         const backButton = document.createElement('button');
         backButton.textContent = "Voltar";
-        backButton.style.backgroundColor = "#dc3545";
+        backButton.classList.add('back-button');
         backButton.addEventListener('click', () => {
             removeLastChoiceFromHistory();
-            removeLastChoiceIdFromHistory(); // Remove o último ID do histórico
+            removeLastChoiceIdFromHistory();
             const previousChoice = choiceHistory.pop();
             displayChoices(previousChoice);
         });

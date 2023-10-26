@@ -6,13 +6,13 @@
     </introduction>
     
     <level1>
-        <choice id="A" description="" image="">
+        <choice id="A" description="Manter a Floresta" image="imagens\imagens\Início.jpg">
             <level2>
-                <choice id="A1" description="" image="">
+                <choice id="A1" description="" image="imagens\imagens\3.jpg">
                     <level3>
-                        <choice id="A1a" description="" image="">
+                        <choice id="A1a" description="" image="imagens\imagens\4.jpg">
                             <level4>
-                                <choice id="A1a1" description="" image="">
+                                <choice id="A1a1" description="" image="imagens\imagens\6.jpg">
                                     <level5>
                                         <choice id="A1a1a" description="" image=""/>
                                         <choice id="A1a1b" description="" image=""/>
@@ -83,13 +83,13 @@
             </level2>
         </choice>
         
-        <choice id="B" description="" image="">
+        <choice id="B" description="Limpar completamente a área florestal?" image="imagens\imagens\3.jpg">
             <level2>
-                <choice id="B1" description="" image="">
+                <choice id="B1" description="" image="imagens\imagens\15.jpg">
                     <level3>
-                        <choice id="B1a" description="" image="">
+                        <choice id="B1a" description="" image="imagens\imagens\11.jpg">
                             <level4>
-                                <choice id="B1a1" description="" image="">
+                                <choice id="B1a1" description="" image="imagens\imagens\12.jpg">
                                     <level5>
                                         <choice id="B1a1a" description="" image=""/>
                                         <choice id="B1a1b" description="" image=""/>
