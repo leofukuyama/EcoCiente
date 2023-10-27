@@ -6,13 +6,13 @@
     </introduction>
     
     <level1>
-        <choice id="A" description="Limpar completamente a área florestal?" image="imagens\imagens\Início.jpg">
+        <choice id="A" description="Limpar completamente a área florestal?" image="imagens\imagens\A.jpg">
             <level2>
-                <choice id="A1" description="Usar produtos químicos para fertilizar as culturas" image="imagens\imagens\3.jpg">
+                <choice id="A1" description="Usar produtos químicos para fertilizar as culturas" image="imagens\imagens\A1.jpg">
                     <level3>
-                        <choice id="A1a" description="Cultivar milho e soja visando lucros rápidos" image="imagens\imagens\4.jpg">
+                        <choice id="A1a" description="Cultivar milho e soja visando lucros rápidos" image="imagens\imagens\A1a.jpg">
                             <level4>
-                                <choice id="A1a1" description="Aplicar produtos químicos para combater pragas nas plantas" image="imagens\imagens\6.jpg">
+                                <choice id="A1a1" description="Aplicar produtos químicos para combater pragas nas plantas" image="imagens\imagens\A1a1.jpg">
                                     <level5>
                                         <choice id="A1a1a" description="Utilizar animais no processo de colheita" image=""/>
                                         <choice id="A1a1b" description="Preferir a colheita feita manualmente" image=""/>
