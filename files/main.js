@@ -73,7 +73,7 @@ function handleChoiceSelection(choice) {
     const feedbackText = getFeedbackText(choice.getAttribute('id'));
     displayFeedback(feedbackText);
 
-    const nextLevel = choice.querySelector(':scope > level2, :scope > level3, :scope > level4, :scope > level5, :scope > level6, :scope > level7');
+    const nextLevel = choice.querySelector(':scope > level2, :scope > level3, :scope > level4, :scope > level5');
 
     if (nextLevel) {
         choiceHistory.push(choice.parentNode);
