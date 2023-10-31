@@ -73,7 +73,7 @@ function handleChoiceSelection(choice) {
     const feedbackText = getFeedbackText(choice.getAttribute('id'));
     displayFeedback(feedbackText);
 
-    const nextLevel = choice.querySelector(':scope > level2, :scope > level3, :scope > level4, :scope > level5');
+    const nextLevel = choice.querySelector(':scope > level2, :scope > level3, :scope > level4, :scope > level5, :scope > level6, :scope > level7');
 
     if (nextLevel) {
         choiceHistory.push(choice.parentNode);
@@ -122,6 +122,7 @@ function removeLastChoiceIdFromHistory() {
     }
 }
 
+//INICIO FEEDBACK A
 function getFeedbackText(choiceId) {
     if (choiceId === 'A') {
         return "Feedback: Essa decisão resultou em uma maior disponibilidade de terras para a agricultura, permitindo uma plantação mais extensa. No entanto, essa ação teve um impacto significativo na biodiversidade da região, com a perda de habitats naturais e redução na diversidade de espécies.";
@@ -164,7 +165,7 @@ function getFeedbackText(choiceId) {
     } else if (choiceId === 'A2a1a') {
         return "Feedback: Animais como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. Porém, o treinamento e cuidados adequados com os animais podem demorar para apresentar resultados positivos.";
     } else if (choiceId === 'A2a1b') {
-        return "Feedback: A colheita manual reduz o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Esta abordagem pode ser mais trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
+        return "Feedback:  Optar pela colheita manual reduz o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Tal abordagem é trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
     } else if (choiceId === 'A2a2') {
         return "Feedback: Inserir predadores naturais em seu plantio é uma abordagem de controle de pragas que ajuda a manter o equilíbrio ecológico em sua fazenda. Isso evita o uso de pesticidas químicos prejudiciais ao meio ambiente, preservando a biodiversidade e promovendo uma agricultura sustentável.";
     } else if (choiceId === 'A2a2a') {
@@ -185,13 +186,73 @@ function getFeedbackText(choiceId) {
         return "Feedback: Os animais, como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. No entanto, esse método pode ser mais demorado e requer treinamento e cuidados adequados com os animais.";
     } else if (choiceId === 'A2b2b') {
         return "Feedback: Optar pela colheita manual irá reduzir o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Esta abordagem é trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
+
+        //FINAL FEEDBACK A 
+
+        //INICIO FEEDBACK B
+
     } else if (choiceId === 'B') {
-        return "Você escolheu limpar completamente a área florestal. Isso pode ter consequências ambientais negativas.";
-    } else {
-        return "Feedback genérico para outras escolhas.";
+        return "Você optou por desmatar apenas o necessário para expandir sua plantação, priorizando o equilíbrio ambiental. Isso manterá parte da floresta intacta, preservando a biodiversidade e minimizando o impacto ambiental.";
+    } else if (choiceId === 'B1') {
+        return "Os fertilizantes químicos podem aumentar significativamente o crescimento das plantas, resultando em uma colheita inicialmente mais abundante. No entanto, o uso frequente de fertilizantes químicos irão prejudicar a qualidade do solo a longo prazo e contaminar os recursos hídricos da região.";
+    } else if (choiceId === 'B1a') {
+        return "Feedback: Tal estratégia que pode levar a lucros rápidos, no entanto, monoculturas de milho e soja podem esgotar rapidamente o solo e aumentar a suscetibilidade a pragas específicas dessas culturas."
+    } else if (choiceId === 'B1a1') {
+        return "Feedback: Você conseguirá proteger suas culturas de pragas e doenças de forma eficaz. Isso pode resultar em uma colheita mais saudável e abundante. No entanto, o uso excessivo de pesticidas químicos pode ter impactos negativos no meio ambiente, prejudicando a biodiversidade e contaminando o solo e a água.";
+    } else if (choiceId === 'B1a1a') {
+        return "Feedback: Os animais, como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. No entanto, esse método pode ser mais demorado e requer treinamento e cuidados adequados com os animais.";
+    } else if (choiceId === 'B1a1b') {
+        return "Feedback: A colheita manual reduz o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Esta abordagem pode ser mais trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
+    } else if (choiceId === 'B1a2') {
+        return "Feedback: Predadores naturais em seu plantio resultam no controle de pragas ecologicamente equilibrado em sua fazenda. Evitando o uso de pesticidas químicos prejudiciais ao meio ambiente, preservando a biodiversidade e promovendo uma agricultura sustentável.";
+    } else if (choiceId === 'B1a2a') {
+    return "Feedback: Os animais, como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. No entanto, esse método pode ser mais demorado e requer treinamento e cuidados adequados com os animais.";
+    } else if (choiceId === 'B1a2b') {
+        return "Feedback: A colheita manual reduz o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Esta abordagem pode ser mais trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
+    } else if (choiceId === 'B1b') {
+        return "Feedback: Plantar legumes e frutas é uma decisão que promove a preservação do solo e a diversidade de culturas. Essas culturas são conhecidas por melhorar a qualidade do solo e são uma opção mais sustentável, contribuindo para a saúde do ecossistema."; 
+    } else if (choiceId === 'B1b1') {
+        return "Feedback: Você conseguirá proteger suas culturas de pragas e doenças de forma eficaz. Isso pode resultar em uma colheita mais saudável e abundante. No entanto, o uso excessivo de pesticidas químicos pode ter impactos negativos no meio ambiente, prejudicando a biodiversidade e contaminando o solo e a água.";
+    } else if (choiceId === 'B1b1a') {
+        return "Feedback: Os animais, como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. No entanto, esse método pode ser mais demorado e requer treinamento e cuidados adequados com os animais.";   
+    } else if (choiceId === 'B1b1b') {
+        return "Feedback: Optar pela colheita manual reduz o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Esta abordagem pode ser mais trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
+    } else if (choiceId === 'B1b2') {
+        return "Feedback: Inserir predadores naturais em seu plantio é uma abordagem de controle de pragas que ajuda a manter o equilíbrio ecológico em sua fazenda. Isso evita o uso de pesticidas químicos prejudiciais ao meio ambiente, preservando a biodiversidade e promovendo uma agricultura sustentável.";
+    } else if (choiceId === 'B1b2a') {
+        return "Feedback: Os animais, como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. No entanto, esse método pode ser mais demorado e requer treinamento e cuidados adequados com os animais.";
+    } else if (choiceId === 'B1b2b') {
+        return "Feedback: Optar pela colheita manual reduz o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Esta abordagem pode ser mais trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
+    } else if (choiceId === 'B2') {
+        return "Feedback: Optando por usar fertilizantes orgânicos por meio da compostagem, você acaba compensando o desmatamento parcial. Tal abordagem ajuda a manter a saúde do solo a longo prazo, preservando o equilíbrio ambiental e promovendo a sustentabilidade em sua fazenda.";
+    } else if (choiceId === 'B2a') {
+        return "Feedback: É uma estratégia que pode levar a lucros rápidos, no entanto, monoculturas de milho e soja podem esgotar rapidamente o solo e aumentar a suscetibilidade a pragas específicas dessas culturas.";
+    } else if (choiceId === 'B2a1') {
+        return "Feedback: Você conseguirá proteger suas culturas de pragas e doenças de forma eficaz. Isso pode resultar em uma colheita mais saudável e abundante. No entanto, o uso excessivo de pesticidas químicos pode ter impactos negativos no meio ambiente, prejudicando a biodiversidade e contaminando o solo e a água";
+    } else if (choiceId === 'B2a1a') {
+        return "Feedback: Os animais, como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. No entanto, esse método pode ser mais demorado e requer treinamento e cuidados adequados com os animais.";   
+    } else if (choiceId === 'B2a1b') {
+        return "Feedback: Optar pela colheita manual reduz o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Esta abordagem pode ser mais trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
+    } else if (choiceId === 'B2a2') {
+        return "Feedback: Inserir predadores naturais em seu plantio é uma abordagem de controle de pragas que ajuda a manter o equilíbrio ecológico em sua fazenda. Isso evita o uso de pesticidas químicos prejudiciais ao meio ambiente, preservando a biodiversidade e promovendo uma agricultura sustentável.";
+    } else if (choiceId === 'B2a2a') {
+        return "Feedback: Os animais, como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. No entanto, esse método pode ser mais demorado e requer treinamento e cuidados adequados com os animais.";
+    } else if (choiceId === 'B2a2b') {
+        return "Feedback: Optar pela colheita manual reduz o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Esta abordagem pode ser mais trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
+    } else if (choiceId === 'B2b') {
+        return "Feedback: Plantar legumes e frutas é uma decisão que promove a preservação do solo e a diversidade de culturas. Essas culturas são conhecidas por melhorar a qualidade do solo e são uma opção mais sustentável, contribuindo para a saúde do ecossistema";
+    } else if (choiceId === 'B2b1') {
+        return "Feedback: Você conseguirá proteger suas culturas de pragas e doenças de forma eficaz. Isso pode resultar em uma colheita mais saudável e abundante. No entanto, o uso excessivo de pesticidas químicos pode ter impactos negativos no meio ambiente, prejudicando a biodiversidade e contaminando o solo e a água.";
+    } else if (choiceId === 'B2b1a') {
+        return "Feedback: Os animais, como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. No entanto, esse método pode ser mais demorado e requer treinamento e cuidados adequados com os animais.";
+    } else if (choiceId === 'B2b2') {
+        return "Feedback: Inserir predadores naturais em seu plantio é uma abordagem de controle de pragas que ajuda a manter o equilíbrio ecológico em sua fazenda. Isso evita o uso de pesticidas químicos prejudiciais ao meio ambiente, preservando a biodiversidade e promovendo uma agricultura sustentável.";
+    } else if (choiceId === 'B2b2a') {
+        return "Feedback: Os animais, como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. No entanto, esse método pode ser mais demorado e requer treinamento e cuidados adequados com os animais";
+    } else if (choiceId === 'B2b2b') {
+        return "Feedback: Optar pela colheita manual reduz o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Esta abordagem pode ser mais trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
     }
 }
-
 function displayFeedback(text) {
     const feedbackTextElement = document.getElementById('feedback-text');
     feedbackTextElement.textContent = text;
