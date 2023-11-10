@@ -23,9 +23,14 @@ function displayStory(xml) {
     document.getElementById('introduction').textContent = introduction;
 }
 
+// ...
+
 function displayChoices(node) {
     const choicesDiv = document.getElementById('choices');
     choicesDiv.innerHTML = '';
+
+    // Criar a imagem fora do loop para que apareça apenas uma vez
+    const img = createChoiceImage(node.querySelector(':scope > choice'));
 
     const choices = node.querySelectorAll(':scope > choice');
     choices.forEach(choice => {
@@ -33,19 +38,29 @@ function displayChoices(node) {
         choiceContainer.classList.add('choice-container');
 
         const btn = createChoiceButton(choice);
-        const img = createChoiceImage(choice);
 
         btn.addEventListener('click', () => handleChoiceSelection(choice));
 
         choiceContainer.appendChild(btn);
-        choiceContainer.appendChild(img);
         choicesDiv.appendChild(choiceContainer);
     });
 
-    if (choiceHistory.length) {
+    // Adicionar a imagem uma vez fora do loop
+    choicesDiv.appendChild(img);
+
+
+    if (choiceHistory.length > 0) {
         const backButton = createBackButton();
         backButton.addEventListener('click', handleBackButtonClick);
         choicesDiv.appendChild(backButton);
+    }
+
+    const allChoicesMade = Array.from(choices).every(choice => choiceHistory.includes(choice.getAttribute('id')));
+
+    if (allChoicesMade) {
+        const finishButton = createFinishButton();
+        finishButton.addEventListener('click', handleFinishButtonClick);
+        choicesDiv.appendChild(finishButton);
     }
 }
 
@@ -73,13 +88,24 @@ function handleChoiceSelection(choice) {
     const feedbackText = getFeedbackText(choice.getAttribute('id'));
     displayFeedback(feedbackText);
 
-    const nextLevel = choice.querySelector(':scope > level2, :scope > level3, :scope > level4, :scope > level5, :scope > level6, :scope > level7');
+    const nextLevel = choice.querySelector(':scope > level2, :scope > level2, :scope > level3, :scope > level4, :scope > level5, :scope > level6, :scope > level7');
+
+    const validIds = ['B2b2b', 'A2b2b', 'A1a1a', 'A1a1b', 'A1a2a', 'A1a2b', 'A1b1a', 'A1b1b', 'A1b2a', 'A1b2b', 'A2a1', 'A2a1a', 'A2a1b', 'A2a2a', 'A2a2b', 'A2b1a', 'A2b1b', 'A2b2a',  'B1a1a', 'B1a1b', 'B1a2a', 'B1a2b', 'B1b2a', 'B1b1b', 'B1b2b', 'B2a1a', 'B2a1b', 'B2a2a', 'B2a2b', 'B2b1a', 'B2b1b', 'B2b2a', 'B2b2b'];
 
     if (nextLevel) {
         choiceHistory.push(choice.parentNode);
         displayChoices(nextLevel);
+    } else {
+        const choiceId = choice.getAttribute('id');
+        console.log('Choice ID:', choiceId);
+    
+        if (validIds.includes(choiceId)) {
+            const finishButton = createFinishButton();
+            finishButton.addEventListener('click', handleFinishButtonClick);
+            document.getElementById('choices').appendChild(finishButton);
+        }
     }
-}
+}    
 
 function createBackButton() {
     const backButton = document.createElement('button');
@@ -121,6 +147,7 @@ function removeLastChoiceIdFromHistory() {
         ul.removeChild(ul.lastChild);
     }
 }
+
 
 //INICIO FEEDBACK A
 function getFeedbackText(choiceId) {
@@ -245,6 +272,8 @@ function getFeedbackText(choiceId) {
         return "Feedback: Você conseguirá proteger suas culturas de pragas e doenças de forma eficaz. Isso pode resultar em uma colheita mais saudável e abundante. No entanto, o uso excessivo de pesticidas químicos pode ter impactos negativos no meio ambiente, prejudicando a biodiversidade e contaminando o solo e a água.";
     } else if (choiceId === 'B2b1a') {
         return "Feedback: Os animais, como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. No entanto, esse método pode ser mais demorado e requer treinamento e cuidados adequados com os animais.";
+    } else if (choiceId === 'B2b1b') {
+        return "Feedback: Optar pela colheita manual reduz o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Esta abordagem pode ser mais trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
     } else if (choiceId === 'B2b2') {
         return "Feedback: Inserir predadores naturais em seu plantio é uma abordagem de controle de pragas que ajuda a manter o equilíbrio ecológico em sua fazenda. Isso evita o uso de pesticidas químicos prejudiciais ao meio ambiente, preservando a biodiversidade e promovendo uma agricultura sustentável.";
     } else if (choiceId === 'B2b2a') {
@@ -257,3 +286,87 @@ function displayFeedback(text) {
     const feedbackTextElement = document.getElementById('feedback-text');
     feedbackTextElement.textContent = text;
 }
+
+function createFinishButton() {
+    const finishButton = document.createElement('button');
+    finishButton.textContent = "Finalizar";
+    finishButton.classList.add('finish-button');
+    return finishButton;
+}
+
+function handleFinishButtonClick() {
+    const overallFeedback = getOverallFeedback();
+    alert(overallFeedback);
+
+    // Ocultar as opções de escolha
+    const choicesDiv = document.getElementById('choices');
+    choicesDiv.innerHTML = '';
+
+    // Mostrar apenas a opção de voltar
+    const backButton = createBackButton();
+    backButton.addEventListener('click', handleBackButtonClick);
+    choicesDiv.appendChild(backButton);
+}
+
+function getOverallFeedback(choiceHistory) {
+    // Verifica se choiceHistory é definido e tem um comprimento maior que zero
+    if (choiceHistory && choiceHistory.length > 0) {
+        // Lógica para calcular o feedback geral com base nas escolhas feitas
+        let overallFeedback = "Feedback Geral: ";
+
+        for (let i = 0; i < choiceHistory.length; i++) {
+            const choiceId = choiceHistory[i].getAttribute('id');
+
+            // Adicione lógica específica para cada escolha aqui
+            if (choiceId === 'A') {
+                overallFeedback += "Essa decisão resultou em uma maior disponibilidade de terras para a agricultura, permitindo uma plantação mais extensa. No entanto, essa ação teve um impacto significativo na biodiversidade da região, com a perda de habitats naturais e redução na diversidade de espécies.";
+            } else if (choiceId === 'A1') {
+                overallFeedback += "Os fertilizantes químicos podem aumentar significativamente o crescimento das plantas, resultando em uma colheita inicialmente mais abundante. No entanto, o uso frequente de fertilizantes químicos pode prejudicar a qualidade do solo e contaminar os recursos hídricos da região a longo prazo.";
+            } else if (choiceId === 'A1a') {
+                overallFeedback += "É uma estratégia que pode levar a lucros rápidos, no entanto, monoculturas de milho e soja podem esgotar rapidamente o solo e aumentar a suscetibilidade a pragas específicas dessas culturas.";
+            } else if (choiceId === 'A1a1') {
+                overallFeedback += "Você conseguirá proteger suas culturas de pragas e doenças de forma eficaz. Isso pode resultar em uma colheita saudável e abundante. No entanto, o uso excessivo de pesticidas químicos pode apresentar impactos negativos ao meio ambiente, prejudicando a biodiversidade e contaminando a água e o solo.";
+            } else if (choiceId === 'A1a1a') {
+                overallFeedback += "Os animais, como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. No entanto, esse método pode ser mais demorado e requer treinamento e cuidados adequados com os animais.";
+            } else if (choiceId === 'A1a1b') {
+                overallFeedback += "Optar pela colheita manual reduz o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Esta abordagem pode ser mais trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
+            } else if (choiceId === 'A1a2') {
+                overallFeedback += "Inserir predadores naturais em seu plantio para controle de pragas ajuda a manter o equilíbrio ecológico em sua fazenda. Evitando o uso de pesticidas químicos prejudiciais ao meio ambiente, preservando a biodiversidade e promovendo uma agricultura sustentável.";
+            } else if (choiceId === 'A1a2a') {
+                overallFeedback += "Os animais, como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. No entanto, esse método irá demorar e requer treinamento e cuidados adequados com os animais.";
+            } else if (choiceId === 'A1a2b') {
+                overallFeedback += "A colheita manual reduz o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Esta abordagem pode ser mais trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
+            } else if (choiceId === 'A1b') {
+                overallFeedback += "Plantar legumes e frutas acaba por preservar o solo e a diversidade de culturas. Essas culturas são conhecidas por melhorar a qualidade do solo e são uma opção mais sustentável, contribuindo para a saúde do ecossistema.";
+            } else if (choiceId === 'A1b1') {
+                overallFeedback += "Você conseguirá proteger suas culturas de pragas e doenças de forma eficaz. Isso pode resultar em uma colheita mais saudável e abundante. No entanto, o uso excessivo de pesticidas químicos pode ter impactos negativos no meio ambiente, prejudicando a biodiversidade e contaminando o solo e a água.";
+            } else if (choiceId === 'A1b1a') {
+                overallFeedback += "Os animais, como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. No entanto, esse método pode ser mais demorado e requer treinamento e cuidados adequados com os animais.";
+            } else if (choiceId === 'A1b1b') {
+                overallFeedback += "Optar pela colheita manual reduz o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Esta abordagem pode ser mais trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
+            } else if (choiceId === 'A1b2') {
+                overallFeedback += "Inserir predadores naturais em seu plantio é uma abordagem de controle de pragas que ajuda a manter o equilíbrio ecológico em sua fazenda. Isso evita o uso de pesticidas químicos prejudiciais ao meio ambiente, preservando a biodiversidade e promovendo uma agricultura sustentável.";
+            } else if (choiceId === 'A1b2a') {
+                overallFeedback += "Os animais, como cavalos ou bois, podem ser usados para puxar arados, colheitadeiras e outros equipamentos agrícolas, minimizando a dependência de combustíveis fósseis e reduzindo a poluição do ar. No entanto, esse método pode ser mais demorado e requer treinamento e cuidados adequados com os animais.";
+            } else if (choiceId === 'A1b2b') {
+                overallFeedback += "Optar pela colheita manual reduz o impacto no solo e nas plantas, promovendo a sustentabilidade em sua fazenda. Esta abordagem pode ser mais trabalhosa, mas resulta em menor compactação do solo e menos danos às plantas.";
+            }
+            // Adicione mais blocos 'else if' conforme necessário para outras escolhas
+
+            
+            // Adicione uma quebra de linha após cada bloco de feedback para melhor legibilidade
+            overallFeedback += "\n";
+        }
+
+        // Retorna o feedback geral
+        return overallFeedback;
+    } else {
+        // Retorna uma mensagem se choiceHistory não estiver definido ou vazio
+        return "Nenhuma escolha registrada ainda.";
+    }
+}
+
+
+
+
+

@@ -17,11 +17,12 @@ body {
 
 .choice-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    text-align: center;
+    justify-content: space-around; /* ou outro valor, como space-between ou space-evenly */
     gap: 10px;
 }
+
 
 /* Área de escolhas */
 #choices {
@@ -34,6 +35,7 @@ body {
 
 /* Botões de escolha */
 button {
+    display: inline-block;
     padding: 10px 15px;
     margin-top: 10px;
     border: none;
@@ -45,13 +47,14 @@ button {
 }
 
 button:hover {
-    background-color: #27ae60;
+    background-color: green;
 }
+
 
 /* Histórico de escolhas e IDs de escolhas */
 #choice-history, #choice-id-history {
     margin-top: 20px;
-    border-top: 1px solid #fdfeff;
+    border-top: 1px solid #ddd;
     padding-top: 20px;
 }
 
@@ -66,8 +69,8 @@ button:hover {
 
 /* Imagens */
 .img {
-    width: 30%; /* Adiciona esta propriedade para garantir que a largura seja 100% */
+    width: 65%; /* Adiciona esta propriedade para garantir que a largura seja 100% */
     max-width: 800px; /* Ajusta a largura máxima da imagem para ser responsiva */
     border-radius: 6px;
-    box-shadow: 2px 2px 12px #060606;
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
 }
